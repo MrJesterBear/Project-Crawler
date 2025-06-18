@@ -1,6 +1,6 @@
-// Saul Maylin 
-// 30/04/2025
-// v2.5
+// Saul Maylin
+// 18/06/2025
+// v1
 // Javascript HTML.
 
 // Navbar Function.
@@ -13,80 +13,45 @@ export function setNav() {
   // Sets the nav bar! Taken from Bootstrap and reformatted to fit the site.
   // https://getbootstrap.com/docs/5.3/components/navbar/
 
- 
-  // If the page is blogAdmin.php, then set the nav bar to have fixed links.
-  if (document.URL.includes("blogAdmin.php")) {
-    let navHTML =
-    '<div class="container-fluid">' +
-    '<a class="navbar-brand" href="../../index.html">The Local Theatre</a>' +
-    '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">' +
-    '<span class="navbar-toggler-icon"></span>' +
-    "</button>" +
-    '<div class="collapse navbar-collapse" id="navbarNavDropdown">' +
+  let navHTML =
+    // Nav Container and Hamburger Menu
+    '<div class="container justify-content-center">' +
+    // '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">' +
+    // '<span class="navbar-toggler-icon"></span>' +
+    // "</button>" +
+    // '<div class="collapse navbar-collapse" id="navbarNavDropdown">' +
     '<ul class="navbar-nav">' +
-    '<li class="nav-item">' +
-    '<a class="nav-link" aria-current="page" href="../../index.html">Home</a>' +
-    "</li>" +
-    '<li class="nav-item">' +
-    '<a class="nav-link" href="../../blog.php">Blogs</a>' +
-    "</li>" +
-    '<li class="nav-item">' +
-    '<a class="nav-link" href="../../about.html">About</a>' +
-    "</li>" +
-    '<li class="nav-item dropdown">' +
-    '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>' +
-    '<ul class="dropdown-menu">';
 
-      // Checks if the user is logged in or not, then displays the correct links.
-    if (checkNav()) {
-      navHTML +=
-        '<li><a class="dropdown-item" href="../../profile.php">Profile</a></li>' +
-        '<li><a class="dropdown-item" href="../php/logout.php">Logout</a></li>';
-    } else {
-      navHTML +=
-        '<li><a class="dropdown-item" href="../../login.php">Login</a></li>' +
-        '<li><a class="dropdown-item" href="../../register.php">Register</a></li>';
-    }
+    // Account Link
+    '<li class="nav-item">' +
+    '<a class="nav-link border" href="account.php">Account</a>' +
+    "</li>" +
 
-    navHTML += "</ul> </li> </ul> </div> </div>";
-    nav.innerHTML = navHTML;
+    // Character Link
+    '<li class="nav-item">' +
+    '<a class="nav-link border" href="linkhere">Characters</a>' +
+    "</li>" +
 
-  } else { // otherwise, serve normal links.
-    let navHTML =
+    // In here should be the logo with href to index page.
     '<div class="container-fluid">' +
-    '<a class="navbar-brand" href="index.html">The Local Theatre</a>' +
-    '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">' +
-    '<span class="navbar-toggler-icon"></span>' +
-    "</button>" +
-    '<div class="collapse navbar-collapse" id="navbarNavDropdown">' +
-    '<ul class="navbar-nav">' +
-    '<li class="nav-item">' +
-    '<a class="nav-link" aria-current="page" href="index.html">Home</a>' +
-    "</li>" +
-    '<li class="nav-item">' +
-    '<a class="nav-link" href="blog.php">Blogs</a>' +
-    "</li>" +
-    '<li class="nav-item">' +
-    '<a class="nav-link" href="about.html">About</a>' +
-    "</li>" +
-    '<li class="nav-item dropdown">' +
-    '<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>' +
-    '<ul class="dropdown-menu">';
+    '<a class="navbar-brand" href="index.html">' +
+      '<img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">' +
+   ' </a>' +
+  '</div>' +
 
-      // Checks if the user is logged in or not, then displays the correct links.
-    if (checkNav()) {
-      navHTML +=
-        '<li><a class="dropdown-item" href="profile.php">Profile</a></li>' +
-        '<li><a class="dropdown-item" href="./php/logout.php">Logout</a></li>';
-    } else {
-      navHTML +=
-        '<li><a class="dropdown-item" href="login.php">Login</a></li>' +
-        '<li><a class="dropdown-item" href="register.php">Register</a></li>';
-    }
+    // Campaign Link
+    '<li class="nav-item">' +
+    '<a class="nav-link border" href="linkhere">Campaigns</a>' +
+    "</li>" +
 
-    navHTML += "</ul> </li> </ul> </div> </div>";
-    nav.innerHTML = navHTML;
-  }
+    // Donate Link
+    '<li class="nav-item">' +
+    '<a class="nav-link border" href="https://ko-fi.com/thejesterbearrr">Donate</a>' +
+    "</li>";
+
+  // close up the nav and make inner html.
+  navHTML += "</ul> </div>";
+  nav.innerHTML = navHTML;
 }
 
 // Check if the cookie is set for logged in.
