@@ -84,7 +84,8 @@ function validateForm(event, form) {
 
       // if true, form passes. if not, form fails.
       if (passValid && emailValid && usernameValid) {
-        return true;
+        const handler = new userFormHandling(email, username, password);
+        handler.registerUser(); 
       } else {
         event.preventDefault();
       }
@@ -140,7 +141,8 @@ function validateForm(event, form) {
 
       // if true, form passes. if not, form fails.
       if (passValid && emailValid) {
-        return true;
+        const handler = new userFormHandling(email, "", password);
+        handler.loginUser(); 
       } else {
         event.preventDefault();
       }

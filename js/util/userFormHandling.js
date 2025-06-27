@@ -1,0 +1,59 @@
+// Saul Maylin
+// 27/06/2025
+// v1
+// Form handling for user registration and login.
+
+class userFormHandling {
+  username;
+  email;
+  password;
+
+  constructor(email, username, password) {
+    this.email = email;
+    this.username = username;
+    this.password = password;
+  }
+
+  registerUser() {
+    $(document).ready(function () {
+      $.ajax({
+        type: "POST",
+        url: "./php/server/account-check.php?type=register",
+        data: {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+        },
+        success: function (response) {
+          console.log("User registered successfully:", response);
+          window.location.href = "./account.php";
+        },
+        error: function (xhr, status, error, response) {
+          console.error("Error registering user:", error, status);
+          window.location.href = "./new-user.php?error=" + response;
+        },
+      });
+    });
+  }
+
+  loginUser() {
+    $(document).ready(function () {
+      $.ajax({
+        type: "POST",
+        url: "./php/server/account-check.php?type=login",
+        data: {
+          email: this.email,
+          password: this.password,
+        },
+        success: function (response) {
+          console.log("User logged in successfully:", response);
+          window.location.href = "./account.php";
+        },
+        error: function (xhr, status, error, response) {
+          console.error("Error logging in user:", error, status);
+          window.location.href = "./new-user.php?error=" + response;
+        },
+      });
+    });
+  }
+}

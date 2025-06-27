@@ -34,6 +34,7 @@ if (isset($_SESSION['UID'])) {
     header("Location: account.php");
 }
 ?>
+
 <body class="bodyDefault">
 
     <!-- * Image & Nav -->
@@ -50,13 +51,13 @@ if (isset($_SESSION['UID'])) {
             setNav();
         </script>
     </nav>
-<?php 
+    <?php
     // If there is an error, display it.
-
+    
     if (isset($_GET['error'])) {
         $errortext;
 
-        switch($_GET['error']) {
+        switch ($_GET['error']) {
             case '0':
                 $errortext = "test";
                 break;
@@ -70,13 +71,13 @@ if (isset($_SESSION['UID'])) {
                 break;
         }
 
-        echo '<div class="alert alert-warning alert-dismissible fade show container text-center" role="alert">'.
-        $errortext.
-        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        echo '<div class="alert alert-warning alert-dismissible fade show container text-center" role="alert">' .
+            $errortext .
+            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
     }
-?>
- 
+    ?>
+
 
     <!-- * login and register panes -->
 
@@ -85,7 +86,7 @@ if (isset($_SESSION['UID'])) {
             <!-- Login -->
             <div class="border col-md mx-5">
                 <h1> Login </h1>
-                <form id="Login" method="POST" action="./php/CheckUser.php"
+                <form id="Login"
                     onsubmit="return validateForm(event, 'login')">
 
 
@@ -127,7 +128,7 @@ if (isset($_SESSION['UID'])) {
             <!-- Register -->
             <div class="border col-md px-5">
                 <h1> Register </h1>
-                <form id="Register" method="POST" action="./php/WriteUser.php"
+                <form id="Register"
                     onsubmit="return validateForm(event, 'register')">
 
 
@@ -190,7 +191,8 @@ if (isset($_SESSION['UID'])) {
     </div>
 
     <!-- Import validation script for the form to use -->
-    <script src="/js/util/formValidation.js"></script>
+    <script src="./js/util/formValidation.js"></script>
+    <script src="./js/util/userFormHandling.js"></script>
 
     <!-- ! Import bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
