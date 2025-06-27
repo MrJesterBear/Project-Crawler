@@ -23,7 +23,7 @@ export function setNav() {
 
     // Account Link
     '<li class="nav-item px-5">' +
-    '<a class="nav-link border" href="account.php">Account</a>' +
+    '<a class="nav-link border" href="new-user.php">Account</a>' +
     "</li>" +
 
     // Character Link

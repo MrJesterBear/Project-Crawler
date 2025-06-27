@@ -1,25 +1,33 @@
 // Saul Maylin
-// 14/01/2025
-// v1
+// 27/06/2025
+// v1.5
 // Form Validation
 
 function validateForm(event, form) {
   // Universal Variables
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-  passValid = true;
-  usernameValid = true;
+  let passValid = true;
+  let usernameValid = true;
+  let emailValid = true;
 
-  const password = document.getElementById("password").value;
-  const username = document.getElementById("username").value;
+  let password;
+  let username;
+  let email;
 
-  const passwordError = document.getElementById("passwordError");
-  const usernameError = document.getElementById("usernameError");
+  let passwordError;
+  let usernameError;
+  let emailError;
 
   switch (form) {
     case "register":
-      const email = document.getElementById("email").value;
-      const emailError = document.getElementById("emailError");
-      emailValid = true;
+      password = document.getElementsByClassName("password")[1].value;
+      username = document.getElementsByClassName("username")[0].value;
+      email = document.getElementsByClassName("email")[1].value;
+
+      passwordError = document.getElementsByClassName("passwordError")[1];
+      usernameError = document.getElementsByClassName("usernameError")[0];
+      emailError = document.getElementsByClassName("emailError")[1];
 
       //? Email Validation
       // ! Empty Field
@@ -32,7 +40,6 @@ function validateForm(event, form) {
         emailError.style.color = "red";
       }
       // ! Email Format
-      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       if (!emailPattern.test(email) && email !== "") {
         emailValid = false;
 
@@ -84,6 +91,11 @@ function validateForm(event, form) {
       break;
 
     case "login":
+      password = document.getElementsByClassName("password")[0].value;
+      email = document.getElementsByClassName("email")[0].value;
+
+      passwordError = document.getElementsByClassName("passwordError")[0];
+      emailError = document.getElementsByClassName("emailError")[0];
 
       //? Password Validation
       // ! Empty Field
@@ -100,21 +112,34 @@ function validateForm(event, form) {
         passwordError.textContent = "";
       }
 
-      //? Username Validation
-      if (username === "") {
-        usernameValid = false;
+      //? Email Validation
+      // ! Empty Field
+      if (email === "") {
+        emailValid = false;
 
-        // Error Message
-        usernameError.textContent = "Username must be filled out to proceed";
-        usernameError.style.color = "red";
+        // Display error message
+        emailError.textContent =
+          "An email must be provided to register an account! please try again.";
+        emailError.style.color = "red";
       }
 
-      if (usernameValid) {
-        usernameError.textContent = "";
+      // ! Email Format
+      if (!emailPattern.test(email) && email !== "") {
+        emailValid = false;
+
+        // Display error message
+        emailError.textContent =
+          "The email address provided is not valid! Please ensure that it ends in a domain. E.G '@gmail.com'";
+        emailError.style.color = "red";
+      }
+
+      // if valid, clear error
+      if (emailValid) {
+        emailError.textContent = "";
       }
 
       // if true, form passes. if not, form fails.
-      if (passValid && usernameValid) {
+      if (passValid && emailValid) {
         return true;
       } else {
         event.preventDefault();
