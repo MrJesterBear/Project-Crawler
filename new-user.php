@@ -34,7 +34,6 @@ if (isset($_SESSION['UID'])) {
     header("Location: account.php");
 }
 ?>
-
 <body class="bodyDefault">
 
     <!-- * Image & Nav -->
@@ -51,6 +50,33 @@ if (isset($_SESSION['UID'])) {
             setNav();
         </script>
     </nav>
+<?php 
+    // If there is an error, display it.
+
+    if (isset($_GET['error'])) {
+        $errortext;
+
+        switch($_GET['error']) {
+            case '0':
+                $errortext = "test";
+                break;
+            case '1':
+                $errortext = "";
+                break;
+            case '2';
+                $errortext = "";
+                break;
+            default:
+                break;
+        }
+
+        echo '<div class="alert alert-warning alert-dismissible fade show container text-center" role="alert">'.
+        $errortext.
+        '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+?>
+ 
 
     <!-- * login and register panes -->
 
