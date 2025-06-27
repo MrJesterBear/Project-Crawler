@@ -15,37 +15,29 @@ export function setNav() {
 
   let navHTML =
     // Nav Container and Hamburger Menu
-    '<div class="container justify-content-center">' +
-    // '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">' +
-    // '<span class="navbar-toggler-icon"></span>' +
-    // "</button>" +
-    // '<div class="collapse navbar-collapse" id="navbarNavDropdown">' +
+    '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">' +
+    '<span class="navbar-toggler-icon"></span>' +
+    "</button>" +
+    '<div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">' +
     '<ul class="navbar-nav">' +
 
     // Account Link
-    '<li class="nav-item">' +
+    '<li class="nav-item px-5">' +
     '<a class="nav-link border" href="account.php">Account</a>' +
     "</li>" +
 
     // Character Link
-    '<li class="nav-item">' +
+    '<li class="nav-item px-5">' +
     '<a class="nav-link border" href="linkhere">Characters</a>' +
     "</li>" +
 
-    // In here should be the logo with href to index page.
-    '<div class="container-fluid">' +
-    '<a class="navbar-brand" href="index.html">' +
-      '<img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">' +
-   ' </a>' +
-  '</div>' +
-
     // Campaign Link
-    '<li class="nav-item">' +
+    '<li class="nav-item px-5">' +
     '<a class="nav-link border" href="linkhere">Campaigns</a>' +
     "</li>" +
 
     // Donate Link
-    '<li class="nav-item">' +
+    '<li class="nav-item px-5">' +
     '<a class="nav-link border" href="https://ko-fi.com/thejesterbearrr">Donate</a>' +
     "</li>";
 
@@ -65,3 +57,11 @@ function checkNav() {
     return true;
   }
 }
+
+
+    // In here should be the logo with href to index page.
+  //   '<div class="container-fluid">' +
+  //   '<a class="navbar-brand" href="index.html">' +
+  //     '<img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">' +
+  //  ' </a>' +
+  // '</div>' +
