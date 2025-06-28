@@ -24,6 +24,7 @@
     <link rel="icon" type="image/x-icon"
         href="/assets/universal/4048494a-3811-4b3f-a59a-cb6ef91501dd_1.56f67623514375c32ce7bbf383a5974a.jpeg" />
 
+    <script src="./js/imports/jquery-3.7.1.min.js"></script>
 </head>
 
 <?php
@@ -191,15 +192,12 @@ if (isset($_SESSION['UID'])) {
 
     <!-- Import validation script for the form to use, as well as jquery. -->
     <script src="./js/util/formValidation.js"></script>
-    <!-- <script src="./js/util/userFormHandling.js"></script> -->
+    <script src="./js/util/userFormHandling.js"></script>
 
     <!-- ! Import bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
         crossorigin="anonymous"></script>
-
-    <script src="./js/imports/jquery-3.7.1.min.js"></script>
-
 </body>
 
 </html>
