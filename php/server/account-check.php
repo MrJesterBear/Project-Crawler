@@ -5,7 +5,8 @@
 ? Check or Register an Account
 -->
 <?php
-header('Content-Type: application/json');
+header('content-type: text/json');
+
 include('../imports/error.php');
 
 // Include the connection file & user class.
@@ -61,7 +62,7 @@ switch ($_GET['type']) {
             echo "Login successful for user: " . $_SESSION['username'];
         } else {
             $error = $user->getError();
-            echo $error;
+            echo json_encode((array('error' => $error)));
 
             // throw new Exception($user->getError());
         }

@@ -39,20 +39,26 @@ class userFormHandling {
 
   loginUser() {
     $.ajax({
-      type: "POST",
       url: "./php/server/account-check.php?type=login",
+      type: "POST",
       data: {
         email: this.email,
         password: this.password,
       },
-      success: function (response) {
-        console.log("User logged in successfully:", response);
-        window.location.href = "./account.php";
-      },
-      error: function (xhr, status, error, response) {
-        console.error("Error logging in user:", error, status);
-        window.location.href = "./new-user.php?error=" + response;
-      },
+      function (response) {
+        switch (response.error) {
+          case 'NOT_FOUND':
+            window.location.href = "./new-user.php?error=NF";
+        }
+      }
+      // success: function (response) {
+      //   console.log("User logged in successfully:", response);
+      //   window.location.href = "./account.php";
+      // },
+      // error: function (xhr, status, error, response) {
+      //   console.error("Error logging in user:", error, status);
+      //   window.location.href = "./new-user.php?error=" + response;
+      // },
     });
   }
 }

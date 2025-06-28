@@ -85,7 +85,7 @@ function validateForm(event, form) {
       // if true, form passes. if not, form fails.
       if (passValid && emailValid && usernameValid) {
         const handler = new userFormHandling(email, username, password);
-        handler.registerUser(); 
+        handler.registerUser();
       } else {
         event.preventDefault();
       }
@@ -141,8 +141,31 @@ function validateForm(event, form) {
 
       // if true, form passes. if not, form fails.
       if (passValid && emailValid) {
-        const handler = new userFormHandling(email, "", password);
-        handler.loginUser(); 
+        // const handler = new userFormHandling(email, "", password);
+        // handler.loginUser();
+
+        $.ajax({
+          url: "./php/server/account-check.php?type=login",
+          type: "POST",
+          data: {
+            email: email,
+            password: password,
+          },
+          function(response) {
+            switch (response.error) {
+              case "NOT_FOUND":
+                window.location.href = "./new-user.php?error=NF";
+            }
+          },
+          // success: function (response) {
+          //   console.log("User logged in successfully:", response);
+          //   window.location.href = "./account.php";
+          // },
+          // error: function (xhr, status, error, response) {
+          //   console.error("Error logging in user:", error, status);
+          //   window.location.href = "./new-user.php?error=" + response;
+          // },
+        });
       } else {
         event.preventDefault();
       }
