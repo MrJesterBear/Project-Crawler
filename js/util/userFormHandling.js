@@ -45,20 +45,32 @@ class userFormHandling {
         email: this.email,
         password: this.password,
       },
-      function (response) {
-        switch (response.error) {
-          case 'NOT_FOUND':
-            window.location.href = "./new-user.php?error=NF";
+      function (data) {
+        console.log("Login response:", data);
+        switch (data.error) {
+          case 'NOT_FOUND': // User not found.
+            window.location.replace = "./new-user.php?error=NF";
+            break;
+          case 'DUP': // email or username already exists.
+            window.location.href = "./new-user.php?error=DUP";
+            break;
+          case 'PASS': // Password incorrect.
+            window.location.href = "./new-user.php?error=PASS";
+            break;
+          case 'REG': // Registration failed, server down?
+            window.location.href = "./new-user.php?error=REG";
+            break;
+          case 'UID': // Failed UID check, server down?
+            window.location.href = "./new-user.php?error=UID";
+            break;
+          case 'NULL': // No error, user logged in successfully
+            window.location.href = "./account.php";
+            break;
+          default: // Unknown error
+            window.location.href = "./new-user.php?error=UNKNOWN";
+            break;
         }
       }
-      // success: function (response) {
-      //   console.log("User logged in successfully:", response);
-      //   window.location.href = "./account.php";
-      // },
-      // error: function (xhr, status, error, response) {
-      //   console.error("Error logging in user:", error, status);
-      //   window.location.href = "./new-user.php?error=" + response;
-      // },
     });
   }
 }

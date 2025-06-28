@@ -1,12 +1,14 @@
-<!-- ? Name:  Saul Maylin
-? Date: 27/06/2025
-? v1.1
-? Project: Project Crawler
-? Check or Register an Account
--->
 <?php
 
-include('../imports/error.php');
+// ? Name:  Saul Maylin
+// ? Date: 27/06/2025
+// ? v1.1
+// ? Project: Project Crawler
+// ? Check or Register an Account
+
+header('content-type: text/json');
+
+// include('../imports/error.php');
 
 // Include the connection file & user class.
 include('../imports/connection.php');
@@ -29,20 +31,18 @@ switch ($_GET['type']) {
                 $_SESSION['username'] = $user->getUsername();
                 $_SESSION['email'] = $user->getEmail();
 
-                echo "Registration successful for user: " . $_SESSION['username'];
+                // echo "Registration successful for user: " . $_SESSION['username'];
+                echo json_encode((array('error' => "null")));
+
             } else {
                 // If registration fails, throw an error.
                 $error = $user->getError();
-                echo json_encode($error);
-
-                // throw new Exception($user->getError());
+                echo json_encode((array('error' => $error)));
             }
         } else {
             // If the user cannot register, throw an error.
             $error = $user->getError();
-            echo json_encode($error);
-
-            // throw new Exception($user->getError());
+            echo json_encode((array('error' => $error)));
         }
 
         break;
@@ -58,12 +58,12 @@ switch ($_GET['type']) {
             $_SESSION['username'] = $user->getUsername();
             $_SESSION['email'] = $user->getEmail();
 
-            echo "Login successful for user: " . $_SESSION['username'];
+            echo json_encode((array('error' => "null")));
+
+            // echo "Login successful for user: " . $_SESSION['username'];
         } else {
             $error = $user->getError();
             echo json_encode((array('error' => $error)));
-
-            // throw new Exception($user->getError());
         }
         break;
 }

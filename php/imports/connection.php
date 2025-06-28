@@ -1,11 +1,12 @@
-<!-- ? Name:  Saul Maylin
-? Date: 28/06/2025
-? v1.1
-? Project: Project Crawler
-? Connection to the database
--->
+
 
 <?php
+// ? Name:  Saul Maylin
+// ? Date: 28/06/2025
+// ? v1.1
+// ? Project: Project Crawler
+// ? Connection to the database
+
 function loadDatabaseConfig($vars = [])
 {
     // get config from php.ini CFG
@@ -41,8 +42,8 @@ function connectToDatabase()
 
 // Run previous function to connect to the database
 if (connectToDatabase()) {
-    echo "<script> console.log('Database connection successful!'); </script>";
+    // echo "<script> console.log('Database connection successful!'); </script>";
 } else {
-    echo "<script> console.error('Failed to connect to the database.'); </script>";
+    echo "<script> console.log('Failed to connect to the database.'); </script>";
 }
 ?>
