@@ -60,14 +60,23 @@ if (isset($_SESSION['UID'])) {
         $errortext;
 
         switch ($_GET['error']) {
-            case '0':
-                $errortext = "test";
+            case 'NF':
+                $errortext = "The user you are trying to log in with does not exist. Please register an account or different credentials.";
                 break;
-            case '1':
-                $errortext = "";
+            case 'DUP':
+                $errortext = "The email or username you are trying to register already exists. Please try a different email or username.";
                 break;
-            case '2';
-                $errortext = "";
+            case 'PASS';
+                $errortext = "The password you entered is incorrect. Please try again.";
+                break;
+            case 'REG';
+                $errortext = "The registration failed, Sorry about that! Please try again and if error persists, please contact website admin..";
+                break;
+            case 'UNKNOWN';
+                $errortext = "An unknown error occurred. Please try again later.";
+                break;
+            case 'UID':
+                $errortext = "The user could not be registered due to an unknown error. Please try again later.";
                 break;
             default:
                 break;

@@ -49,7 +49,7 @@ class userFormHandling {
         console.log("Login response:", data);
         switch (data.error) {
           case 'NOT_FOUND': // User not found.
-            window.location.replace = "./new-user.php?error=NF";
+            window.location.href = "./new-user.php?error=NF";
             break;
           case 'DUP': // email or username already exists.
             window.location.href = "./new-user.php?error=DUP";
