@@ -1,6 +1,6 @@
 <!-- ? Name:  Saul Maylin
-? Date: 27/06/2025
-? v1
+? Date: 28/06/2025
+? v1.1
 ? Project: Project Crawler
 ? -->
 
@@ -86,8 +86,7 @@ if (isset($_SESSION['UID'])) {
             <!-- Login -->
             <div class="border col-md mx-5">
                 <h1> Login </h1>
-                <form id="Login"
-                    onsubmit="return validateForm(event, 'login')">
+                <form id="Login" onsubmit="return validateForm(event, 'login')">
 
 
                     <!-- Email Row -->
@@ -128,8 +127,7 @@ if (isset($_SESSION['UID'])) {
             <!-- Register -->
             <div class="border col-md px-5">
                 <h1> Register </h1>
-                <form id="Register"
-                    onsubmit="return validateForm(event, 'register')">
+                <form id="Register" onsubmit="return validateForm(event, 'register')">
 
 
                     <!-- Email Row -->
@@ -190,9 +188,10 @@ if (isset($_SESSION['UID'])) {
         <p class="text-white">This is a footer! yarharr.</p>
     </div>
 
-    <!-- Import validation script for the form to use -->
+    <!-- Import validation script for the form to use, as well as jquery. -->
     <script src="./js/util/formValidation.js"></script>
     <script src="./js/util/userFormHandling.js"></script>
+    <script src="./js/imports/jquery-3.7.1.min.js"></script>
 
     <!-- ! Import bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

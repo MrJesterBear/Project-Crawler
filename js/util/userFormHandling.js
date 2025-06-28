@@ -1,6 +1,6 @@
 // Saul Maylin
-// 27/06/2025
-// v1
+// 28/06/2025
+// v1.1
 // Form handling for user registration and login.
 
 class userFormHandling {
@@ -15,45 +15,44 @@ class userFormHandling {
   }
 
   registerUser() {
-    $(document).ready(function () {
-      $.ajax({
-        type: "POST",
-        url: "./php/server/account-check.php?type=register",
-        data: {
-          email: this.email,
-          username: this.username,
-          password: this.password,
-        },
-        success: function (response) {
-          console.log("User registered successfully:", response);
-          window.location.href = "./account.php";
-        },
-        error: function (xhr, status, error, response) {
-          console.error("Error registering user:", error, status);
-          window.location.href = "./new-user.php?error=" + response;
-        },
-      });
+    $.ajax({
+      type: "POST", // Type of request
+      url: "./php/server/account-check.php?type=register", // Where request is sent
+      data: {
+        // Post Variables
+        email: this.email,
+        username: this.username,
+        password: this.password,
+      },
+      success: function (response) {
+        // what happens on success
+        console.log("User registered successfully:", response);
+        window.location.href = "./account.php";
+      },
+      error: function (xhr, status, error, response) {
+        // what happens on error.
+        console.error("Error registering user:", error, status);
+        window.location.href = "./new-user.php?error=" + response;
+      },
     });
   }
 
   loginUser() {
-    $(document).ready(function () {
-      $.ajax({
-        type: "POST",
-        url: "./php/server/account-check.php?type=login",
-        data: {
-          email: this.email,
-          password: this.password,
-        },
-        success: function (response) {
-          console.log("User logged in successfully:", response);
-          window.location.href = "./account.php";
-        },
-        error: function (xhr, status, error, response) {
-          console.error("Error logging in user:", error, status);
-          window.location.href = "./new-user.php?error=" + response;
-        },
-      });
+    $.ajax({
+      type: "POST",
+      url: "./php/server/account-check.php?type=login",
+      data: {
+        email: this.email,
+        password: this.password,
+      },
+      success: function (response) {
+        console.log("User logged in successfully:", response);
+        window.location.href = "./account.php";
+      },
+      error: function (xhr, status, error, response) {
+        console.error("Error logging in user:", error, status);
+        window.location.href = "./new-user.php?error=" + response;
+      },
     });
   }
 }
