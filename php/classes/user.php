@@ -14,7 +14,7 @@ class User
 
     private $UID;
     private $status;
-    private $error;
+    private $error = "ERR: ";
 
     public function __construct($email, $username)
     {
@@ -45,7 +45,7 @@ class User
                 $stmt->bind_result($UID);
                 $this->UID = $UID;
             } else { // Failed to retrieve UID, query failed.
-                $this->error = 'UID';
+                $this->error .= 'UID';
                 return false;
             }
 
@@ -54,7 +54,7 @@ class User
             return true; // Registration successful
         } else {
             // Failed to register user, query failed.
-            $this->error = 'REG';
+            $this->error .= 'REG';
             $stmt->close();
             return false; // Registration failed
 
@@ -89,12 +89,12 @@ class User
                     $stmt->close();
                     return true; // Login successful
                 } else {
-                    $this->error = 'PASS'; // Incorrect password
+                    $this->error .= 'PASS'; // Incorrect password
                     $stmt->close();
                     return false; // Login failed
                 }
             } else {
-                $this->error = 'NOT_FOUND'; // User not found
+                $this->error .= 'NOT_FOUND'; // User not found
                 $stmt->close();
                 return false; // Login failed
             }
@@ -117,7 +117,7 @@ class User
             return true; // Duplicate found
         } else {
             $stmt->close();
-            $this->error = 'DUP';
+            $this->error .= 'DUP';
             return false; // No duplicate
         }
     }

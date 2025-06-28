@@ -23,6 +23,8 @@
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />
     <link rel="icon" type="image/x-icon"
         href="/assets/universal/4048494a-3811-4b3f-a59a-cb6ef91501dd_1.56f67623514375c32ce7bbf383a5974a.jpeg" />
+
+    <script src="./js/imports/jquery-3.7.1.min.js"></script>
 </head>
 
 <?php
@@ -191,7 +193,6 @@ if (isset($_SESSION['UID'])) {
     <!-- Import validation script for the form to use, as well as jquery. -->
     <script src="./js/util/formValidation.js"></script>
     <script src="./js/util/userFormHandling.js"></script>
-    <script src="./js/imports/jquery-3.7.1.min.js"></script>
 
     <!-- ! Import bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

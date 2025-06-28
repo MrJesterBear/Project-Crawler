@@ -5,7 +5,7 @@
 ? Check or Register an Account
 -->
 <?php
-
+header('Content-Type: application/json');
 include('../imports/error.php');
 
 // Include the connection file & user class.
@@ -32,13 +32,15 @@ switch ($_GET['type']) {
                 echo "Registration successful for user: " . $_SESSION['username'];
             } else {
                 // If registration fails, throw an error.
-                echo $user->getError();
+                $error = $user->getError();
+                echo json_encode($error);
 
                 // throw new Exception($user->getError());
             }
         } else {
             // If the user cannot register, throw an error.
-            echo $user->getError();
+            $error = $user->getError();
+            echo json_encode($error);
 
             // throw new Exception($user->getError());
         }
@@ -58,7 +60,8 @@ switch ($_GET['type']) {
 
             echo "Login successful for user: " . $_SESSION['username'];
         } else {
-            echo $user->getError();
+            $error = $user->getError();
+            echo $error;
 
             // throw new Exception($user->getError());
         }
