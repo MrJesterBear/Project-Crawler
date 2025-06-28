@@ -45,7 +45,7 @@ class userFormHandling {
         email: this.email,
         password: this.password,
       },
-      done() {
+      done(data) {
         console.log("Login response:", data);
         switch (data.error) {
           case 'NOT_FOUND': // User not found.
