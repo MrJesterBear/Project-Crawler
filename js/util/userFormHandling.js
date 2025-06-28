@@ -45,7 +45,7 @@ class userFormHandling {
         email: this.email,
         password: this.password,
       },
-      function (data) {
+      done() {
         console.log("Login response:", data);
         switch (data.error) {
           case 'NOT_FOUND': // User not found.
@@ -70,6 +70,9 @@ class userFormHandling {
             window.location.href = "./new-user.php?error=UNKNOWN";
             break;
         }
+      },
+      function (data) {
+        
       }
     });
   }
