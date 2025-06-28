@@ -5,7 +5,6 @@
 ? Check or Register an Account
 -->
 <?php
-header('content-type: text/json');
 
 include('../imports/error.php');
 
