@@ -18,8 +18,8 @@ include('../classes/user.php');
 
 switch ($_GET['type']) {
     case 'register': // Registering a new user
-        $user = new User($GET['email'], $GET['password']);
-        $user->setUsername($GET['username']);
+        $user = new User($_POST['email'], $_POST['password']);
+        $user->setUsername($_POST['username']);
 
         // Check if the user can register an account with the provided details.
         if ($user->checkDuplicate($DB)) {
@@ -48,7 +48,7 @@ switch ($_GET['type']) {
         break;
     case 'login': // Logging in an existing user
         // Create a new user object.
-        $user = new User($GET['email'], $GET['password']);
+        $user = new User($_POST['email'], $_POST['password']);
 
         // Attempt to log in the user.
         if ($user->loginAccount($DB)) {
