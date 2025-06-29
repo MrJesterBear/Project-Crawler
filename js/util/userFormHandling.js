@@ -43,7 +43,7 @@ class userFormHandling {
           case "UID": // Failed UID check, server down?
             window.location.href = "./new-user.php?error=UID";
             break;
-          case "NULL": // No error, user logged in successfully
+          case "NONE": // No error, user logged in successfully
             window.location.href = "./account.php";
             break;
           default: // Unknown error
