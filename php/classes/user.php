@@ -40,9 +40,9 @@ class User
                 $stmt2->store_result();
                 $UID = null;
 
+                $stmt2->bind_result($UID);
                 $stmt2->fetch(); // Fetch the result
 
-                $stmt2->bind_result($UID);
                 $this->UID = $UID;
             } else { // Failed to retrieve UID, query failed.
                 $this->error = 'UID';

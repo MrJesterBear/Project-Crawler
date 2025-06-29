@@ -29,9 +29,9 @@
 // Double check user is not logged in.
 session_start();
 
-if (isset($_SESSION['UID'])) {
-    // If user is logged in, redirect to the home page.
-    header("Location: account.php");
+if (!isset($_SESSION['UID'])) {
+    // If user is not logged in, redirect to the new user page.
+    header("Location: ./new-user.php");
 }
 ?>
 
@@ -63,12 +63,6 @@ if (isset($_SESSION['UID'])) {
     <div class="d-flex justify-content-center py-3">
         <img src="https://live.staticflickr.com/5342/9655276540_c29e82047e_b.jpg" alt="fun image" width="1000">
     </div>
-
-    <?php
-    echo $_SESSION['UID'];
-    echo $_SESSION['username'];
-    echo $_SESSION['email'];
-    ?>
 
     <!-- Footer -->
     <div class="container-fluid text-center bg-secondary border border-border">
