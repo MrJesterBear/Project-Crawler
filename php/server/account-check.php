@@ -8,7 +8,7 @@
 
 header('content-type: text/json');
 
-include('../imports/error.php');
+// include('../imports/error.php');
 
 // Include the connection file & user class.
 include('../imports/connection.php');
