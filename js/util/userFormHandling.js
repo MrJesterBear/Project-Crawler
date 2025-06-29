@@ -30,7 +30,7 @@ class userFormHandling {
         errorHandler(data.error); // checks if there is an error in the response.
       },
       error: function (xhr, status, error) {
-        console.error("Error logging in user:", error, status);
+        console.error("Error registering in user:", error, status);
         window.location.href = "./new-user.php?error=UNKNOWN";
       },
     });
@@ -76,7 +76,7 @@ class userFormHandling {
         window.location.href = "./account.php";
         break;
       default: // Unknown error
-        window.location.href = "./new-user.php?error=UNKNOWN";
+        // window.location.href = "./new-user.php?error=UNKNOWN";
         break;
     }
   }
