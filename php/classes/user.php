@@ -113,9 +113,10 @@ class User
 
         // execute statement
         $stmt->execute();
-        $result = $stmt->store_result();
+        $stmt->store_result();
+        $stmt->fetch();
 
-        if ($result->num_rows > 0) {
+        if ($stmt->num_rows > 0) {
             $stmt->close();
             $this->error = 'DUP';
             return true; // Duplicate found
