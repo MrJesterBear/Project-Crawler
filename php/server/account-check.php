@@ -8,7 +8,7 @@
 
 header('content-type: text/json');
 
-// include('../imports/error.php');
+include('../imports/error.php');
 
 // Include the connection file & user class.
 include('../imports/connection.php');
@@ -22,8 +22,12 @@ switch ($_GET['type']) {
         $user->setUsername($_POST['username']);
 
         // Check if the user can register an account with the provided details.
-        if ($user->checkDuplicate($DB)) {
+        if (!$user->checkDuplicate($DB)) {
             // If the user can register, attempt to register the account.
+            
+            // Hash Password
+            $user->createHashPassword($user->getPassword()); 
+            
             if ($user->registerAccount($DB)) {
                 // If successful, set the session variables.
                 session_start();

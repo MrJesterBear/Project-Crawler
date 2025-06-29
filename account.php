@@ -64,6 +64,12 @@ if (isset($_SESSION['UID'])) {
         <img src="https://live.staticflickr.com/5342/9655276540_c29e82047e_b.jpg" alt="fun image" width="1000">
     </div>
 
+    <?php
+    echo $_SESSION['UID'];
+    echo $_SESSION['username'];
+    echo $_SESSION['email'];
+    ?>
+
     <!-- Footer -->
     <div class="container-fluid text-center bg-secondary border border-border">
         <p class="text-white">This is a footer! yarharr.</p>

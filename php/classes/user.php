@@ -16,41 +16,44 @@ class User
     private $status;
     private $error = "NULL";
 
-    public function __construct($email, $username)
+    public function __construct($email, $password)
     {
         $this->email = $email;
-        $this->username = $username;
+        $this->password = $password;
     }
 
     public function registerAccount($DB)
     {
         // Prepare
         $stmt = $DB->prepare("INSERT INTO crawlerAccounts (email, username, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $this->email, $this->username, $this->createHashPassword($this->password));
+        $stmt->bind_param("sss", $this->email, $this->username, $this->passwordHash);
 
         // Execute
         if ($stmt->execute()) { // success
 
             // Prepare statement to get the UID of the newly created account.
-            $stmt = $DB->prepare("SELECT UID FROM crawlerAccounts WHERE email = ? AND username = ?");
-            $stmt->bind_param("ss", $this->email, $this->username);
+            $stmt2 = $DB->prepare("SELECT UID FROM crawlerAccounts WHERE email = ? AND username = ?");
+            $stmt2->bind_param("ss", $this->email, $this->username);
 
             // if the result is successful, get the ID.
-            if ($stmt->execute()) {
-                $stmt->store_result();
+            if ($stmt2->execute()) {
+                $stmt2->store_result();
                 $UID = null;
 
-                $stmt->fetch(); // Fetch the result
+                $stmt2->fetch(); // Fetch the result
 
-                $stmt->bind_result($UID);
+                $stmt2->bind_result($UID);
                 $this->UID = $UID;
             } else { // Failed to retrieve UID, query failed.
                 $this->error = 'UID';
+                $stmt->close();
+                $stmt2->close();
                 return false;
             }
 
             // Continues on.
             $stmt->close();
+            $stmt2->close();
             return true; // Registration successful
         } else {
             // Failed to register user, query failed.
@@ -114,10 +117,10 @@ class User
 
         if ($result->num_rows > 0) {
             $stmt->close();
+            $this->error = 'DUP';
             return true; // Duplicate found
         } else {
             $stmt->close();
-            $this->error = 'DUP';
             return false; // No duplicate
         }
     }
@@ -125,7 +128,7 @@ class User
     // Set password hash
     public function createHashPassword($password)
     {
-        $this->password = $this->hash($password);
+        $this->passwordHash = $this->hash($password);
     }
 
     // hash given password using PHP's password hashing function.
@@ -182,6 +185,13 @@ class User
     {
         return $this->email;
     }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    
 }
 
 ?>
