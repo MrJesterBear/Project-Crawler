@@ -36,7 +36,7 @@ switch ($_GET['type']) {
                 $_SESSION['email'] = $user->getEmail();
 
                 // echo "Registration successful for user: " . $_SESSION['username'];
-                echo json_encode((array('error' => "null")));
+                echo json_encode((array('error' => "NONE")));
 
             } else {
                 // If registration fails, throw an error.
