@@ -14,7 +14,7 @@ class User
 
     private $UID;
     private $status;
-    private $error;
+    private $error = "NULL";
 
     public function __construct($email, $username)
     {

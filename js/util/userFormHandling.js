@@ -24,15 +24,14 @@ class userFormHandling {
         username: this.username,
         password: this.password,
       },
-      success: function (response) {
-        // what happens on success
-        console.log("User registered successfully:", response);
-        window.location.href = "./account.php";
+      success: function (data) {
+        // When the php file has been executed succesfully.
+        console.log("register response:", data);
+        errorHandler(data.error); // checks if there is an error in the response.
       },
-      error: function (xhr, status, error, response) {
-        // what happens on error.
-        console.error("Error registering user:", error, status);
-        window.location.href = "./new-user.php?error=" + response;
+      error: function (xhr, status, error) {
+        console.error("Error logging in user:", error, status);
+        window.location.href = "./new-user.php?error=UNKNOWN";
       },
     });
   }
@@ -45,36 +44,40 @@ class userFormHandling {
         email: this.email,
         password: this.password,
       },
-      success: function(data) {
+      success: function (data) {
         console.log("Login response:", data);
-        switch (data.error) {
-          case 'NOT_FOUND': // User not found.
-            window.location.href = "./new-user.php?error=NF";
-            break;
-          case 'DUP': // email or username already exists.
-            window.location.href = "./new-user.php?error=DUP";
-            break;
-          case 'PASS': // Password incorrect.
-            window.location.href = "./new-user.php?error=PASS";
-            break;
-          case 'REG': // Registration failed, server down?
-            window.location.href = "./new-user.php?error=REG";
-            break;
-          case 'UID': // Failed UID check, server down?
-            window.location.href = "./new-user.php?error=UID";
-            break;
-          case 'NULL': // No error, user logged in successfully
-            window.location.href = "./account.php";
-            break;
-          default: // Unknown error
-            window.location.href = "./new-user.php?error=UNKNOWN";
-            break;
-        }
+        errorHandler(data.error);
       },
-      error: function(xhr, status, error) {
+      error: function (xhr, status, error) {
         console.error("Error logging in user:", error, status);
         window.location.href = "./new-user.php?error=UNKNOWN";
-      }
+      },
     });
+  }
+
+  errorHandler(error) {
+    switch (error) {
+      case "NOT_FOUND": // User not found.
+        window.location.href = "./new-user.php?error=NF";
+        break;
+      case "DUP": // email or username already exists.
+        window.location.href = "./new-user.php?error=DUP";
+        break;
+      case "PASS": // Password incorrect.
+        window.location.href = "./new-user.php?error=PASS";
+        break;
+      case "REG": // Registration failed, server down?
+        window.location.href = "./new-user.php?error=REG";
+        break;
+      case "UID": // Failed UID check, server down?
+        window.location.href = "./new-user.php?error=UID";
+        break;
+      case "NULL": // No error, user logged in successfully
+        window.location.href = "./account.php";
+        break;
+      default: // Unknown error
+        window.location.href = "./new-user.php?error=UNKNOWN";
+        break;
+    }
   }
 }
