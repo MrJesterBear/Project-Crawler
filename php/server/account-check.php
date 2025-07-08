@@ -62,7 +62,7 @@ switch ($_GET['type']) {
             $_SESSION['username'] = $user->getUsername();
             $_SESSION['email'] = $user->getEmail();
 
-            echo json_encode((array('error' => "null")));
+            echo json_encode((array('error' => "NONE")));
 
             // echo "Login successful for user: " . $_SESSION['username'];
         } else {

@@ -25,6 +25,16 @@
         href="/assets/universal/4048494a-3811-4b3f-a59a-cb6ef91501dd_1.56f67623514375c32ce7bbf383a5974a.jpeg" />
 </head>
 
+<?php
+// Double check user is not logged in.
+session_start();
+
+if (isset($_SESSION['UID'])) {
+    // If user is logged in, redirect to the home page.
+    header("Location: account.php");
+}
+?>
+
 <body class="bodyDefault">
 
     <!-- * Image & Nav -->
@@ -73,7 +83,6 @@
                     <div class="text-center mb-3">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -84,6 +93,10 @@
     <div class="container-fluid text-center bg-secondary border border-border">
         <p class="text-white">This is a footer! yarharr.</p>
     </div>
+
+    <!-- Import validation script for the form to use, as well as jquery. -->
+    <script src="./js/util/formValidation.js"></script>
+    <script src="./js/util/userFormHandling.js"></script>
 
     <!-- ! Import bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

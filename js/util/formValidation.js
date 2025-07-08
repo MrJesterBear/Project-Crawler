@@ -150,6 +150,33 @@ function validateForm(event, form) {
       }
       break;
 
+    case "reset":
+      email = document.getElementsByClassName("email")[0].value;
+      emailError = document.getElementsByClassName("emailError")[0];
+
+      // ! Email Format
+      if (!emailPattern.test(email) && email !== "") {
+        emailValid = false;
+
+        // Display error message
+        emailError.textContent =
+          "The email address provided is not valid! Please ensure that it ends in a domain. E.G '@gmail.com'";
+        emailError.style.color = "red";
+      }
+
+      // if valid, clear error
+      if (emailValid) {
+        emailError.textContent = "";
+      }
+
+      if (emailValid) {
+        event.preventDefault();
+        const handler = new userFormHandling(email, "", "");
+        handler.resetUser();
+      } else {
+        event.preventDefault();
+      }
+      break;
     case "default":
       event.preventDefault();
       break;

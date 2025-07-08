@@ -98,4 +98,35 @@ class userFormHandling {
       },
     });
   }
+
+  resetUser() {
+    $.ajax({
+      url: "./php/server/account-check.php?type=login",
+      type: "POST",
+      data: {
+        email: this.email,
+      },
+      success: function (data) {
+        console.log("Login response:", data);
+        switch (data.error) {
+          case "NO_EMAIL": // Form was not filled out correctly.
+            window.location.href = "./forgot-password.php?error=NO_EMAIL";
+            break;
+          case "QUERY_FAILED": // Query did not complete. Server down?
+            window.location.href = "./forgot-password.php?error=QUERY_FAILED";
+            break;
+          case "NONE": // No error, continue.
+            // Change the page layout to show the 
+            break;
+          default: // Unknown error
+            window.location.href = "./forgot-password.php?error=UNKNOWN";
+            break;
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error logging in user:", error, status);
+        window.location.href = "./new-user.php?error=UNKNOWN";
+      },
+    });
+  }
 }
