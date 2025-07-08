@@ -23,7 +23,13 @@ if (isset($_POST['email'])) {
     if ($reset->checkEmail($DB)) {
         // if exists, create the request.
         if ($reset->createResetRequest($DB)) {
+            // https://www.mailersend.com/blog/php-send-email#recommended-send-email-in-php-using-mailersend
+            // Send the reset email using MailerSend (has to be installed on backend).
 
+            
+
+            // return success.
+            echo json_encode(array('error' => $reset->getError()));
         } else {
             // If the request fails, return an error.
             echo json_encode(array('error' => $reset->getError()));
@@ -34,9 +40,9 @@ if (isset($_POST['email'])) {
         echo json_encode(array('error' => $reset->getError()));
     }
 } else {
-        // If the email is not set, return an error.
-        echo json_encode(array('error' => 'NO_EMAIL'));
-    }
+    // If the email is not set, return an error.
+    echo json_encode(array('error' => 'NO_EMAIL'));
+}
 
 // Close all open connections.
 $DB->close();

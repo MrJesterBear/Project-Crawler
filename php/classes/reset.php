@@ -38,7 +38,7 @@ class Reset
                 return true; // Email exists in the database.
             } else {
                 $stmt->close();
-                $this->error = 'EMAIL_NOT_FOUND';
+                $this->error = 'NONE';
                 return false; // Email does not exist in the database, but continue for security.
             }
 
