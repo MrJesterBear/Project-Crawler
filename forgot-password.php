@@ -52,22 +52,43 @@
 
     <div class="d-flex justify-content-center text-center my-3">
         <div class="row">
-            <!-- Login -->
+            <!-- Reset -->
             <div class="border col-md mx-5">
+                <form id="resetForm" class="form-horizontal" onsubmit="return validateForm(event, 'reset')">
+                    <!-- Email Row -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input name="email" type="email" class="form-control email" id="email"
+                            placeholder="Enter Your Email...">
+                    </div>
 
+                    <!-- Email Error Row -->
+                    <div class="row mb-5">
+                        <div class="col-sm-10">
+                            <span id="emailError" class="text-danger emailError"></span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center mb-3">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+
+                </form>
             </div>
         </div>
+    </div>
 
 
-        <!-- Footer -->
-        <div class="container-fluid text-center bg-secondary border border-border">
-            <p class="text-white">This is a footer! yarharr.</p>
-        </div>
+    <!-- Footer -->
+    <div class="container-fluid text-center bg-secondary border border-border">
+        <p class="text-white">This is a footer! yarharr.</p>
+    </div>
 
-        <!-- ! Import bootstrap JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
-            crossorigin="anonymous"></script>
+    <!-- ! Import bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
