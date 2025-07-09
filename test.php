@@ -1,4 +1,5 @@
 <?php
+include './php/imports/error.php';
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -6,8 +7,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader (created by composer, not included with PHPMailer)
-require '../vendor/autoload.php';
-require '/php/imports/env.php';
+require './vendor/autoload.php';
+require './php/imports/env.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -24,7 +25,7 @@ try {
     $mail->Port       = $_ENV['SMTP_PORT'];                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
+    $mail->setFrom('no-reply@crawler.saulmaylin.com', 'Mailer');
     $mail->addAddress('saul@saulmaylin.com');               //Name is optional
 
     //Content
