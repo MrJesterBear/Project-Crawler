@@ -52,6 +52,36 @@ if (isset($_SESSION['UID'])) {
         </script>
     </nav>
 
+        <?php
+        // If there is an error, display it.
+        
+        if (isset($_GET['error'])) {
+                $errortext;
+
+                switch ($_GET['error']) {
+                    case 'NO_EMAIL':
+                        $errortext = "No email provided. Please enter your email to begin resetting your password.";
+                        break;
+                    case 'QUERY_FAILED':
+                        $errortext = "The request could not be completed. Please try again later. We are sorry for the inconvenience.";
+                        break;
+                    case 'MAIL_FAILED';
+                        $errortext = "The email could not be sent. Please try again later. We are sorry for the inconvenience.";
+                        break;
+                    case 'UNKNOWN';
+                        $errortext = "An unknown error occurred. Please try again later.";
+                        break;
+                    default:
+                        break;
+                }
+
+                echo '<div class="alert alert-warning alert-dismissible fade show container text-center" role="alert">' .
+                    $errortext .
+                    '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            }
+        ?>
+
     <!-- * Main Content -->
 
     <div class="container-fluid text-center">
@@ -61,7 +91,7 @@ if (isset($_SESSION['UID'])) {
     </div>
 
     <div class="d-flex justify-content-center text-center my-3">
-        <div class="row">
+        <div class="row" id="resetFormContainer">
             <!-- Reset -->
             <div class="border col-md mx-5">
                 <form id="resetForm" class="form-horizontal" onsubmit="return validateForm(event, 'reset')">

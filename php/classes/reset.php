@@ -58,13 +58,15 @@ class Reset
 
         $stmt = $DB->prepare("INSERT INTO crawlerResets (UID, code) VALUES (?, '?');");
         $stmt->bind_param("is", $this->uid, $code);
-        
+
         if ($stmt->execute()) {
             // If the query is successful, return the code.
             $stmt->close();
             $_SESSION['resetCode'] = $code;
+            $_SESSION['resetUID'] = $this->uid; // Store the UID in session for later use.
             $this->error = 'NONE'; // No error
-            return true;;
+            return true;
+            ;
         } else {
             // If the query fails, set the error and return false.
             $this->error = 'QUERY_FAILED';
@@ -97,6 +99,11 @@ class Reset
     public function getError()
     {
         return $this->error;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
 
